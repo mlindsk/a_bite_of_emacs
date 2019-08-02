@@ -33,7 +33,7 @@
 
 # Emacs
 
-[Emacs Logo](img/emacs.png)
+![Emacs Logo](https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png)
 
 -   Text editor (on steroids)
 
