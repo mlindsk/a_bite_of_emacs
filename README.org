@@ -1,13 +1,9 @@
 #+TITLE: A Bite of Emacs and ESS
 #+AUTHOR: Mads Lindskou
 
-* [[file:img/emacs_scaled.png][Emacs]] Emacs 
-
-
-
-Insetting html works for both Gitlab and Github.
 
 #+html: <p align="center"><img src="https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png" /></p>
+* [[file:img/emacs.png][Emacs]]
 
  - Text editor (on steroids)
 
