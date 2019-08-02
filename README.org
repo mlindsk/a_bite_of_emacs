@@ -1,9 +1,9 @@
-#+TITLE: Using Emacs With R and ESS
+#+TITLE: A Bite of Emacs and ESS
 #+AUTHOR: Mads Lindskou
 
 * Emacs
 
-                  [[file:img/emacs.png][Emacs]]
+                  [[file:img/emacs.png][Emacs Logo]]
 
  - Text editor (on steroids)
 
