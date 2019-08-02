@@ -1,0 +1,310 @@
+#+TITLE: Using Emacs With R and ESS
+#+AUTHOR: Mads Lindskou
+
+* Emacs
+
+                  [[file:img/emacs.png][Emacs]]
+
+ - Text editor (on steroids)
+
+ - Initial release in 1976 (43 years ago!)
+   + Richard Stallman began the GNU Emacs in 1984 (free version)
+
+ - Stable release 26.2
+
+ - Cross-platform
+
+ - Active community
+
+ - Extensible and customizable
+
+* How To Use Emacs
+
+ 1) Learn the basics and be happy. 
+
+ 2) Learn some advanced commands that suit your needs. 
+
+ 3) Constantly look for new commands to speed up editing. 
+
+ 4) Progress to write your own totally new Emacs commands.
+
+* The Basics
+
+** Buffers and Mini buffers
+
+   - A *buffer* is an interface between Emacs and a file or process.
+
+     + Equivalent to tabs/panes (and its content).
+
+   - The *minibuffer* is a special buffer.
+
+     + Often a window occupying a single line.
+
+** Windows and Frames
+
+   - A *window* is a view onto a buffer.
+
+     + Two windows are what you would split screen in other contexts.
+
+   - A *frame* is the `container`.
+
+     + Called a window in most other contexts.
+   
+   [[https://www.youtube.com/watch?v=aIMECr7K35Q][Working with windows and frames - video]]
+
+** Keybindings
+
+*** Nomenclature
+
+   - ~C-<key>~            : Press control and <key>
+
+   - ~C-<key1> C-<key2>~  : Press control and <key1> release and 
+                          press control and <key2>
+
+   - ~M-x~ (M = Meta key) : Alt-x -> type a command; e.g. list-packages
+
+** Some Important Ones
+
+    1) ~C-g~        : undo the current command
+    2) ~C-x b~      : switch to other buffer
+    3) ~M-<~        : go to beggining of buffer
+    4) ~M->~        : go to end of buffer
+    5) ~C-s~        : incremental search
+    6) ~C-r~        : search backward
+    7) ~C-e~        : end of line
+    8) ~C-a~        : beginning of line
+    9) ~C-x 1~      : destroy all windows but the this
+    10) ~C-x 2~     : Split horizontally
+    11) ~C-x 3~     : split vertically
+    12) ~C-x o~     : move to next window
+    13) ~C-x k~     : kill buffer
+    14) ~C-x f~     : find file
+    15) ~C-x C-b~   : Ibuffer (enhanced buffer overview)
+    16) ~C-M-s~     : incremental search using regexp
+    17) ~M-%~       : replace string 
+    18) ~C-M-%~     : replace string regexp
+    19) ~C-c C-x~   : end emacs (useful on remote servers)
+    20) ~C-h k~     : describe-keybinding
+    21) ~C-h m~     : man page of the major mode
+
+    [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][Cheatsheet]]
+
+    [[https://www.masteringemacs.org/article/mastering-key-bindings-emacs][Make your own keybindings]]
+
+*** Killing and Yanking
+
+    - Also known as _cut_ and _paste_
+
+    - But more general because of the *killring*
+
+      + ~C-w~ : Kill   (cut)
+
+      + ~M-w~ : Saving (copy) to the killring
+
+      + ~C-y~ : Yank   (paste)
+
+    - The killring can be seen as a _stack_ with the 60 most recent kills
+
+*** Rectangles
+
+    - ~M-x kill-rectangle~
+
+    - ~M-x yank-rectangle~
+
+    *Example - Swap columns:*
+
+      A   1
+      
+      B   2
+      
+      C   3
+
+** Modes
+
+*** Major Modes
+
+    - Every buffer possesses a *major mode*. 
+
+    - It determines the editing behavior of Emacs while that buffer is current.
+
+    - It is typically some `language-mode` like
+
+      + *r-mode*
+
+      + *c++-mode*
+
+      + *python-mode*
+
+      + *makefile-mode*
+
+      + *text-mode*
+
+      + *markdown-mode*
+
+      + *pandoc-mode*
+
+      + ...
+
+    - ~M-x <major-mode>~ : change the major mode
+
+*** Minor Modes
+
+    - A buffer can have several *minor modes*
+
+      + Auto correction
+
+      + Tab Completion
+
+      + Matching parenthesis
+
+      + Macros
+
+      + ...
+
+* Multiple Cursors
+
+  - https://github.com/magnars/multiple-cursors.el
+
+  *Example*
+  
+  X 1.000 0.054 
+  Y 0.054 1.000 
+  Z 1.000 0.775 
+  
+* Dired Mode
+ 
+  Dired is a file browsing system within Emacs
+
+  - ~C-x d~            : Open dired mode
+
+  - ~S-^~              : Up-directory
+
+  - ~a~                : Enter directory
+
+  - ~q~                : quit
+
+  - ~m~                : mark file
+
+  - ~u~                : unmark file
+
+  - ~d~                : mark for deletion
+
+  - ~x~                : delete files marked for deletion
+
+  - ~S-!~              : apply a function to file
+
+  - ~C-x C-q~          : enter editing mode
+
+  - ~C-c C-c~          : leave editing mode
+
+  - ~M-S-! nautilus .~ : open nautilus here: 
+   
+* Bookmarks
+   
+  - ~C-x r m~ : Create new bookmark (can be a file or a folder)
+  
+  - ~C-x r b~ : Go to bookmark
+  
+  - ~C-x r l~ : List of all bookmarks
+  
+* The init.el File
+
+  - When Emacs starts, it initialize your configuration file *.init*
+
+    + located in the *.emacs* folder.
+
+    + in a fresh install it contains nothing!
+
+** Melpa
+
+   - A package repository for Emacs
+
+     + https://melpa.org/#/getting-started
+       
+  #+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+  '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  (package-initialize)
+  #+END_SRC
+
+   - ~M-x package-install <package>~
+
+   - ~M-x list-packages~
+
+* AucTex
+
+  - A Tex system in Emacs
+
+  - More to come...
+
+* Emacs Speaks Statistics
+
+  - [[https://ess.r-project.org/][ESS]]
+
+  - Support for various statistical analysis languages
+
+    + *R*
+
+    + *Julia*
+
+    + *SAS*
+
+    + *Stata*
+
+    + *JAGS*
+
+  - inferior ESS (iESS) mode is the REPL (interactive shell) we use
+
+** R
+
+  - .init -> (reqiure 'ess-rutils)
+
+  - The family of ess-rutils: ~C-c C. <to-do>~
+
+  - ~C-c C-. o~ : rdired
+
+  - ~C-c C-s~   : switch process
+
+  - ~C-c C-. d~ : change the current working directory
+
+  - ~C-c C-. r~ : list all available pkgs (and intsall some if you want)
+
+  - ~C-c C-. m~ : remove all R objects in the current session
+
+  - ~C-c C-. l~ : list all local (installed) pkgs
+
+  - ~M-x ess-rutils-rsitesearch~ :
+
+    + Suggestion: Bind to C-c f6
+
+  - The drop-down iESS menu
+
+*** Debugging
+
+
+*** Package mode
+
+
+*** Controlling buffer display
+
+   - 3.5 Controlling buffer display
+ 
+* Polymode
+
+  - Several major modes in one buffer
+
+
+# * EmacsConf
+
+#   - Online conference
+
+#    + "EmacsConf is the conference about the joy of Emacs, Emacs Lisp, and memorizing key sequences."
+
+#   - This year
+
+#    + https://emacsconf.org/2019/
+
+#   - EmacsConf 2015 - Hearing from Emacs Beginners
+
+#    + https://www.youtube.com/watch?v=k0t400BzKnU
