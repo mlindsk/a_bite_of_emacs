@@ -3,6 +3,8 @@
 
 * [[file:img/emacs_scaled.png][Emacs]] Emacs 
 
+  <p align="center"><img src="https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png" /></p>
+
  - Text editor (on steroids)
 
  - Initial release in 1976 (43 years ago!)
