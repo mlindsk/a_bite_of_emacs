@@ -3,7 +3,11 @@
 
 * [[file:img/emacs_scaled.png][Emacs]] Emacs 
 
-  <p align="center"><img src="https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png" /></p>
+
+
+Insetting html works for both Gitlab and Github.
+
+#+html: <p align="center"><img src="https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png" /></p>
 
  - Text editor (on steroids)
 
