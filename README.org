@@ -1,13 +1,12 @@
 #+TITLE: A Bite of Emacs and ESS
 #+AUTHOR: Mads Lindskou
 
-* Emacs
-
-                  [[file:img/emacs.png][Emacs Logo]]
+* [[file:img/emacs_scaled.png][Emacs]] Emacs 
 
  - Text editor (on steroids)
 
  - Initial release in 1976 (43 years ago!)
+
    + Richard Stallman began the GNU Emacs in 1984 (free version)
 
  - Stable release 26.2
@@ -67,7 +66,7 @@
 
     1) ~C-g~        : undo the current command
     2) ~C-x b~      : switch to other buffer
-    3) ~M-<~        : go to beggining of buffer
+    3) ~M-<~        : go to beginning of buffer
     4) ~M->~        : go to end of buffer
     5) ~C-s~        : incremental search
     6) ~C-r~        : search backward
@@ -232,11 +231,9 @@
 
    - ~M-x list-packages~
 
-* AucTex
+* IN-PROGRESS AucTex
 
-  - A Tex system in Emacs
-
-  - More to come...
+  - A major mode for using Latex
 
 * Emacs Speaks Statistics
 
@@ -256,7 +253,7 @@
 
   - inferior ESS (iESS) mode is the REPL (interactive shell) we use
 
-** R
+** IN-PROGRESS R
 
   - .init -> (reqiure 'ess-rutils)
 
@@ -280,17 +277,17 @@
 
   - The drop-down iESS menu
 
-*** Debugging
+*** IN-PROGRESS Debugging
 
 
-*** Package mode
+*** IN-PROGRESS Package mode
 
 
-*** Controlling buffer display
+*** IN-PROGRESS Controlling buffer display
 
    - 3.5 Controlling buffer display
  
-* Polymode
+* IN-PROGRESS Polymode
 
   - Several major modes in one buffer
 
