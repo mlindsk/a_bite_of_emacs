@@ -1,8 +1,8 @@
 #+TITLE: A Bite of Emacs and ESS
 #+AUTHOR: Mads Lindskou
 
-
 #+html: <p align="center"><img src="https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png" /></p>
+
 * [[file:img/emacs.png][Emacs]]
 
  - Text editor (on steroids)
@@ -63,7 +63,6 @@
                           press control and <key2>
 
    - ~M-x~ (M = Meta key) : Alt-x -> type a command; e.g. list-packages
-
 ** Some Important Ones
 
     1) ~C-g~        : undo the current command
@@ -84,9 +83,10 @@
     16) ~C-M-s~     : incremental search using regexp
     17) ~M-%~       : replace string 
     18) ~C-M-%~     : replace string regexp
-    19) ~C-c C-x~   : end emacs (useful on remote servers)
+    19) ~C-x C-c~   : end emacs (useful on remote servers)
     20) ~C-h k~     : describe-keybinding
-    21) ~C-h m~     : man page of the major mode
+    21) ~C-h f~     : describe function
+    22) ~C-h m~     : man page of the major mode
 
     [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][Cheatsheet]]
 
@@ -233,9 +233,46 @@
 
    - ~M-x list-packages~
 
-* IN-PROGRESS AucTex
+   - Consider the ~paradox~ package
+     + A lot easier to navigate with
+     + ~paradox-list-packages~
 
-  - A major mode for using Latex
+
+* IN-PROGRESS YASsnippets
+
+* AucTex
+
+  - A major mode for using Latex within Emacs
+
+  - Some useful keybindings
+
+    + ~C-c C-c~    : compile, bibtex, view document
+    + ~C-c C-e~    : Start an environment (itemize, equation, tabular, etc.)
+    + ~C-c RETURN~ : Start macro
+    + ~C-c (~      : Insert label
+    + ~C-c )~      : \ref
+    + ~C-c [~      : \cite, \citep, etc.
+    + ~S-=~        : Contents
+    
+    [[ftp://ftp.gnu.org/gnu/auctex/11.82-extra/tex-ref.pdf][AucTeX cheatsheet]]
+
+  - *LaTeX-math-mode* - support for math formatting
+
+    + ~C-c ~~  : Toggle
+    + ~`~      : Prefix key
+
+  - YASsnippets within AucTeX!
+
+  - Minimal setup in init file:
+
+  #+BEGIN_SRC emacs-lisp
+  ;; Remove sub and superscript sepcial fonting
+  (setq font-latex-fontify-script nil)
+  ;; Turn on RefTeX in AUCTeX
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  ;; Activate nice interface between RefTeX and AUCTeX
+  (setq reftex-plug-into-auctex t)
+  #+END_SRC
 
 * Emacs Speaks Statistics
 
@@ -257,7 +294,7 @@
 
 ** IN-PROGRESS R
 
-  - .init -> (reqiure 'ess-rutils)
+  - In init.el put ~(reqiure 'ess-rutils)~
 
   - The family of ess-rutils: ~C-c C. <to-do>~
 
@@ -279,31 +316,42 @@
 
   - The drop-down iESS menu
 
-*** IN-PROGRESS Debugging
+  [[http://ess.r-project.org/refcard.pdf][Cheatsheet]]
+
+*** Debugging
 
 
-*** IN-PROGRESS Package mode
+*** Package mode
 
 
-*** IN-PROGRESS Controlling buffer display
+*** Controlling buffer display
 
-   - 3.5 Controlling buffer display
+    - 3.5 Controlling buffer display
+*** Rcpp 
+
+    - https://github.com/polymode/poly-R
+   
  
 * IN-PROGRESS Polymode
 
   - Several major modes in one buffer
 
+  - https://polymode.github.io/screenshots/
 
-# * EmacsConf
+  - 
 
-#   - Online conference
+* Magit
 
-#    + "EmacsConf is the conference about the joy of Emacs, Emacs Lisp, and memorizing key sequences."
+  - A major mode for *git* version control
 
-#   - This year
+  - [[https://www.masteringemacs.org/article/introduction-magit-emacs-mode-git][Vanilla tutorial]]
 
-#    + https://emacsconf.org/2019/
+  - [[https://www.youtube.com/watch?v=vQO7F2Q9DwA&feature=youtu.be][Video tutorial]]
 
-#   - EmacsConf 2015 - Hearing from Emacs Beginners
+  - [[https://magit.vc/screenshots/][Screenshots tutorial]]
 
-#    + https://www.youtube.com/watch?v=k0t400BzKnU
+  - Init setup:
+
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-x g") 'magit-status)
+  #+END_SRC
