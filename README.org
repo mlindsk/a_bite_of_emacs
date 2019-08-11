@@ -234,9 +234,10 @@
    - ~M-x list-packages~
 
    - Consider the ~paradox~ package
-     + A lot easier to navigate with
-     + ~paradox-list-packages~
 
+     + A lot easier to navigate with
+
+     + ~paradox-list-packages~
 
 * IN-PROGRESS YASsnippets
 
@@ -318,27 +319,39 @@
 
   [[http://ess.r-project.org/refcard.pdf][Cheatsheet]]
 
-*** Debugging
+*** IN-PROGRESS Debugging
 
+*** IN-PROGRESS Package mode
 
-*** Package mode
-
-
-*** Controlling buffer display
+*** IN-PROGRESS Controlling buffer display
 
     - 3.5 Controlling buffer display
-*** Rcpp 
-
-    - https://github.com/polymode/poly-R
-   
- 
-* IN-PROGRESS Polymode
+    
+* Polymode
 
   - Several major modes in one buffer
 
-  - https://polymode.github.io/screenshots/
+  - https://polymode.github.io/
 
-  - 
+  - https://github.com/polymode/poly-R
+
+
+** Rmarkdown
+   
+   - ~poly-markdown+R-mode~
+
+   - Templates
+     
+     + ~M-x ~poly-r-rmarkdown-create-from-template~
+
+     + Or RMarkdown -> Templates from the ESS dropdown menu
+
+     + Or in ~Rmd~ files using ~M-n M-m~
+
+
+** IN-PROGRESS Rcpp
+
+   - ~poly-C++-mode~
 
 * Magit
 
