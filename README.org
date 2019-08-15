@@ -168,9 +168,11 @@
 
   *Example*
   
-  X 1.000 0.054 
-  Y 0.054 1.000 
-  Z 1.000 0.775 
+  #+BEGIN_SRC text
+    X 1.000 0.054 
+    Y 0.054 1.000 
+    Z 1.000 0.775 
+  #+END_SRC
   
 * Dired Mode
  
@@ -237,9 +239,35 @@
 
      + A lot easier to navigate with
 
-     + ~paradox-list-packages~
+     + ~M-x paradox-list-packages~
 
-* IN-PROGRESS YASsnippets
+* YASsnippets
+
+  - A for template system for Emacs
+
+  - ~yasnippet-snippets~ : Collection of snippets that supports e.g.
+    + ~c-mode~
+    + ~c++-mode~
+    + ~python-mode~
+    + ~lisp-mode~
+    + ~latex-mode~
+    + ~bibtex-mode~
+    + ~org-mode~
+    + ~markdown-mode~
+
+  - ~yas-describe-tables~ : Snippets and keys for current mode
+
+  - No official snippets for ~r-mode~
+    + But easy to create
+
+  #+BEGIN_SRC
+  # -*- mode: snippet -*-
+  # name: lapply
+  # key: lap
+  # group: *apply family
+  # --
+  lapply($1, function(x) $0)
+  #+END_SRC
 
 * AucTex
 
@@ -293,7 +321,7 @@
 
   - inferior ESS (iESS) mode is the REPL (interactive shell) we use
 
-** IN-PROGRESS R
+** R
 
   - In init.el put ~(reqiure 'ess-rutils)~
 
@@ -316,14 +344,21 @@
 *** Debugging
 
     - ~C-c C-t <char>~ : The family of ~ess-dev-map~
+
       + ~b~ : Set breakpoint
+
       + ~k~ : Kill breakpoint
+
       + ~n~ : Next breakpoint
+
       + ~p~ : Previous breakpoint
 
     - Debugging in ~ess-debug-mode-map~
+
       + ~M-C~ : Continue
+
       + ~M-N~ : Nex line
+
       + ~M-Q~ : Quit
 
 *** Package mode
@@ -331,16 +366,63 @@
     - Integrates nicely with ~devtools~ and ~roxygen2~
 
     - ~M-x ess-r-devtools-<what>~
+
       + ~create-package~
+
       + ~load-package~
+
       + ~check-package~
+
       + ~test-package~
+
       + ~document-package~
+
       + ~install~
 
-*** IN-PROGRESS Controlling buffer display
+*** Controlling buffer display
 
-    - 3.5 Controlling buffer display
+    - Default is
+    
+   #+BEGIN_SRC text
+   ----------------------------
+   |            |             |
+   |            |             |
+   |            |             |
+   |   Source   |   Console   |
+   |            |             |
+   |            |             |
+   |            |             |
+   ----------------------------
+   #+END_SRC
+
+   - ESS manual section 3.5 - Controlling buffer display
+
+   #+BEGIN_SRC text
+   ----------------------------
+   |            |             |
+   |   Source   |             |
+   |            |             |
+   |------------| Environment |
+   |            |             |
+   |   Console  |             |
+   |            |             |
+   ----------------------------
+   #+END_SRC
+
+   - ~ess-r-dired~ : Bring up the environment buffer
+
+
+*** Tags
+
+    - ~C-c C-e C-t~ : create tags for directory
+
+    - ~M-.~         : navigate to tag (a function)
+
+    - ~M-,~         : return
+
+    - In package mode
+
+      + ~ess-r-devtools-load-package~ : all tags available
     
 * Polymode
 
@@ -359,14 +441,11 @@
      
      + ~M-x ~poly-r-rmarkdown-create-from-template~
 
-     + Or RMarkdown -> Templates from the ESS dropdown menu
+     + Or in ~.Rmd~ files
 
-     + Or in ~Rmd~ files using ~M-n M-m~
+       1. Templates from the RMarkdown dropdown menu
 
-
-** IN-PROGRESS Rcpp
-
-   - ~poly-C++-mode~
+       2. ~M-n M-m~
 
 * Magit
 
