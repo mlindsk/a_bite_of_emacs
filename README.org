@@ -5,19 +5,19 @@
 
 * [[file:img/emacs.png][Emacs]]
 
- - Text editor (on steroids)
+  - Text editor (on steroids)
 
- - Initial release in 1976 (43 years ago!)
+  - Initial release in 1976 (43 years ago!)
 
-   + Richard Stallman began the GNU Emacs in 1984 (free version)
+    + Richard Stallman began the GNU Emacs in 1984 (free version)
 
- - Stable release 26.2
+  - Stable release 26.2
 
- - Cross-platform
+  - Cross-platform
 
- - Active community
+  - Active community
 
- - Extensible and customizable
+  - Extensible and customizable
 
 * How To Use Emacs
 
@@ -297,31 +297,46 @@
 
   - In init.el put ~(reqiure 'ess-rutils)~
 
-  - The family of ess-rutils: ~C-c C. <to-do>~
+  - ~C-ENTER~ : Send line or region to iESS
+  - ~C-UP~    : Eval buffer till point
+  - ~C-down~  : Eval buffer from point
 
-  - ~C-c C-. o~ : rdired
+  - ~C-c C. <char>~ : The family of ~ess-rutils~
+    + ~o~ : rdired
+    + ~s~ : switch process
+    + ~d~ : change the current working directory
+    + ~r~ : list all available pkgs (and intsall some if you want)
+    + ~m~ : remove all R objects in the current session
+    + ~l~ : list all local (installed) pkgs
 
-  - ~C-c C-s~   : switch process
-
-  - ~C-c C-. d~ : change the current working directory
-
-  - ~C-c C-. r~ : list all available pkgs (and intsall some if you want)
-
-  - ~C-c C-. m~ : remove all R objects in the current session
-
-  - ~C-c C-. l~ : list all local (installed) pkgs
-
-  - ~M-x ess-rutils-rsitesearch~ :
-
-    + Suggestion: Bind to C-c f6
-
-  - The drop-down iESS menu
+  - ESS drop-down menu
 
   [[http://ess.r-project.org/refcard.pdf][Cheatsheet]]
 
-*** IN-PROGRESS Debugging
+*** Debugging
 
-*** IN-PROGRESS Package mode
+    - ~C-c C-t <char>~ : The family of ~ess-dev-map~
+      + ~b~ : Set breakpoint
+      + ~k~ : Kill breakpoint
+      + ~n~ : Next breakpoint
+      + ~p~ : Previous breakpoint
+
+    - Debugging in ~ess-debug-mode-map~
+      + ~M-C~ : Continue
+      + ~M-N~ : Nex line
+      + ~M-Q~ : Quit
+
+*** Package mode
+
+    - Integrates nicely with ~devtools~ and ~roxygen2~
+
+    - ~M-x ess-r-devtools-<what>~
+      + ~create-package~
+      + ~load-package~
+      + ~check-package~
+      + ~test-package~
+      + ~document-package~
+      + ~install~
 
 *** IN-PROGRESS Controlling buffer display
 
