@@ -1,5 +1,4 @@
 #+TITLE: A Bite of Emacs and ESS
-#+AUTHOR: Mads Lindskou
 
 #+html: <p align="center"><img src="https://github.com/mlindsk/a_bite_of_emacs/blob/master/img/emacs.png" /></p>
 
@@ -35,7 +34,7 @@
 
    - A *buffer* is an interface between Emacs and a file or process.
 
-     + Equivalent to tabs/panes (and its content).
+     + Equivalent to tabs (and panes are the actual content).)
 
    - The *minibuffer* is a special buffer.
 
@@ -51,8 +50,6 @@
 
      + Called a window in most other contexts.
    
-   [[https://www.youtube.com/watch?v=aIMECr7K35Q][Working with windows and frames - video]]
-
 ** Keybindings
 
 *** Nomenclature
@@ -62,10 +59,10 @@
    - ~C-<key1> C-<key2>~  : Press control and <key1> release and 
                           press control and <key2>
 
-   - ~M-x~ (M = Meta key) : Alt-x -> type a command; e.g. list-packages
+   - ~M-x~ (M = Meta key) : Alt-x -> type a command; e.g. ~list-packages~
 ** Some Important Ones
 
-    1) ~C-g~        : undo the current command
+    1) ~C-g~        : cancel the current command
     2) ~C-x b~      : switch to other buffer
     3) ~M-<~        : go to beginning of buffer
     4) ~M->~        : go to end of buffer
@@ -88,6 +85,11 @@
     21) ~C-h f~     : describe function
     22) ~C-h m~     : man page of the major mode
 
+    23) Some not so important ones
+	1) ~M-c~ : capitalize word (~M-capitalize-word~)
+	2) ~M-l~ : downcase word   (~M-downcase-word~)
+	3) ~M-u~ : upcase word     (~M-upcase-word~)
+
     [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][Cheatsheet]]
 
     [[https://www.masteringemacs.org/article/mastering-key-bindings-emacs][Make your own keybindings]]
@@ -106,11 +108,12 @@
 
     - The killring can be seen as a _stack_ with the 60 most recent kills
 
+      + ~C-y M-y~ : Insert from killring
 *** Rectangles
 
-    - ~M-x kill-rectangle~
+    - ~M-x kill-rectangle~ (~C-x r k~)
 
-    - ~M-x yank-rectangle~
+    - ~M-x yank-rectangle~ (~C-x r y~)
 
     *Example - Swap columns:*
 
@@ -325,16 +328,22 @@
 
   - In init.el put ~(reqiure 'ess-rutils)~
 
-  - ~C-ENTER~ : Send line or region to iESS
-  - ~C-UP~    : Eval buffer till point
-  - ~C-down~  : Eval buffer from point
+  - Some useful commands
+    + ~C-ENTER~     : send line or region to iESS
+    + ~C-c C-UP~    : eval buffer till point
+    + ~C-c C-DOWN~  : eval buffer from point
+    + ~C-c C-f~     : eval function
+    + ~C-c C-s~     : switch process
+    + ~C-x C-v~     : documentation for object at point
+    + ~C-M-a~       : go to beginning of function
+    + ~C-M-e~       : go to end of function
+    + ~C-UP~        : previous command in REPL
+    + ~C-c C-c~     : break process in REPL
 
-  - ~C-c C. <char>~ : The family of ~ess-rutils~
+  - The family of ~ess-rutils~ (~C-c C. <char>~) 
     + ~o~ : rdired
-    + ~s~ : switch process
     + ~d~ : change the current working directory
     + ~r~ : list all available pkgs (and intsall some if you want)
-    + ~m~ : remove all R objects in the current session
     + ~l~ : list all local (installed) pkgs
 
   - ESS drop-down menu
@@ -411,10 +420,9 @@
 
    - ~ess-r-dired~ : Bring up the environment buffer
 
-
 *** Tags
 
-    - ~C-c C-e C-t~ : create tags for directory
+    - ~C-c C-e C-t~ : create tags for directory (inside an ~.R~ file)
 
     - ~M-.~         : navigate to tag (a function)
 
