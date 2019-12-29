@@ -18,6 +18,9 @@
 
   - Extensible and customizable
 
+* A Comprehensive List of Packages
+  - https://github.com/emacs-tw/awesome-emacs
+
 * How To Use Emacs
 
  1) Learn the basics and be happy. 

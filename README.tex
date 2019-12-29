@@ -1,0 +1,641 @@
+% Created 2019-12-05 Thu 08:23
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[margin=2cm]{geometry}
+\author{Mads Lindskou}
+\date{\today}
+\title{A Bite of Emacs and ESS}
+\hypersetup{
+ pdfauthor={Mads Lindskou},
+ pdftitle={A Bite of Emacs and ESS},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{\href{img/emacs.png}{Emacs}}
+\label{sec:orgc4951c6}
+
+\begin{itemize}
+\item Text editor (on steroids)
+
+\item Initial release in 1976 (43 years ago!)
+
+\begin{itemize}
+\item Richard Stallman began the GNU Emacs in 1984 (free version)
+\end{itemize}
+
+\item Stable release 26.2
+
+\item Cross-platform
+
+\item Active community
+
+\item Extensible and customizable
+\end{itemize}
+
+\section{How To Use Emacs}
+\label{sec:orgb26cfbd}
+
+\begin{enumerate}
+\item Learn the basics and be happy.
+
+\item Learn some advanced commands that suit your needs.
+
+\item Constantly look for new commands to speed up editing.
+
+\item Progress to write your own totally new Emacs commands.
+\end{enumerate}
+
+\section{The Basics}
+\label{sec:org43efa09}
+
+\subsection{Buffers and Mini buffers}
+\label{sec:org1384051}
+
+\begin{itemize}
+\item A \textbf{buffer} is an interface between Emacs and a file or process.
+
+\begin{itemize}
+\item Equivalent to tabs (and panes are the actual content).)
+\end{itemize}
+
+\item The \textbf{minibuffer} is a special buffer.
+
+\begin{itemize}
+\item Often a window occupying a single line.
+\end{itemize}
+\end{itemize}
+
+\subsection{Windows and Frames}
+\label{sec:org34044fb}
+
+\begin{itemize}
+\item A \textbf{window} is a view onto a buffer.
+
+\begin{itemize}
+\item Two windows are what you would split screen in other contexts.
+\end{itemize}
+
+\item A \textbf{frame} is the `container`.
+
+\begin{itemize}
+\item Called a window in most other contexts.
+\end{itemize}
+\end{itemize}
+
+\subsection{Keybindings}
+\label{sec:org6eb7b6d}
+
+\subsubsection{Nomenclature}
+\label{sec:org056559d}
+
+\begin{itemize}
+\item \texttt{C-<key>}            : Press control and <key>
+
+\item \texttt{C-<key1> C-<key2>}  : Press control and <key1> release and 
+press control and <key2>
+
+\item \texttt{M-x} (M = Meta key) : Alt-x -> type a command; e.g. \texttt{list-packages}
+\end{itemize}
+\subsection{Some Important Ones}
+\label{sec:org9a59151}
+
+\begin{enumerate}
+\item \texttt{C-g}        : cancel the current command
+\item \texttt{C-x b}      : switch to other buffer
+\item \texttt{M-<}        : go to beginning of buffer
+\item \texttt{M->}        : go to end of buffer
+\item \texttt{C-s}        : incremental search
+\item \texttt{C-r}        : search backward
+\item \texttt{C-e}        : end of line
+\item \texttt{C-a}        : beginning of line
+\item \texttt{C-x 1}      : destroy all windows but the this
+\item \texttt{C-x 2}     : Split horizontally
+\item \texttt{C-x 3}     : split vertically
+\item \texttt{C-x o}     : move to next window
+\item \texttt{C-x k}     : kill buffer
+\item \texttt{C-x f}     : find file
+\item \texttt{C-x C-b}   : Ibuffer (enhanced buffer overview)
+\item \texttt{C-M-s}     : incremental search using regexp
+\item \texttt{M-\%}       : replace string
+\item \texttt{C-M-\%}     : replace string regexp
+\item \texttt{C-x C-c}   : end emacs (useful on remote servers)
+\item \texttt{C-h k}     : describe-keybinding
+\item \texttt{C-h f}     : describe function
+\item \texttt{C-h m}     : man page of the major mode
+
+\item Some not so important ones
+\begin{enumerate}
+\item \texttt{M-c} : capitalize word (\texttt{M-capitalize-word})
+\item \texttt{M-l} : downcase word   (\texttt{M-downcase-word})
+\item \texttt{M-u} : upcase word     (\texttt{M-upcase-word})
+\end{enumerate}
+\end{enumerate}
+
+\href{https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf}{Cheatsheet}
+
+\href{https://www.masteringemacs.org/article/mastering-key-bindings-emacs}{Make your own keybindings}
+
+\subsubsection{Killing and Yanking}
+\label{sec:org845befd}
+
+\begin{itemize}
+\item Also known as \uline{cut} and \uline{paste}
+
+\item But more general because of the \textbf{killring}
+
+\begin{itemize}
+\item \texttt{C-w} : Kill   (cut)
+
+\item \texttt{M-w} : Saving (copy) to the killring
+
+\item \texttt{C-y} : Yank   (paste)
+\end{itemize}
+
+\item The killring can be seen as a \uline{stack} with the 60 most recent kills
+
+\begin{itemize}
+\item \texttt{C-y M-y} : Insert from killring
+\end{itemize}
+\end{itemize}
+\subsubsection{Rectangles}
+\label{sec:orgcc37234}
+
+\begin{itemize}
+\item \texttt{M-x kill-rectangle} (\texttt{C-x r k})
+
+\item \texttt{M-x yank-rectangle} (\texttt{C-x r y})
+\end{itemize}
+
+\textbf{Example - Swap columns:}
+
+A   1
+
+B   2
+
+C   3
+
+\subsection{Modes}
+\label{sec:org40c4bcb}
+
+\subsubsection{Major Modes}
+\label{sec:org1fc9017}
+
+\begin{itemize}
+\item Every buffer possesses a \textbf{major mode}.
+
+\item It determines the editing behavior of Emacs while that buffer is current.
+
+\item It is typically some `language-mode` like
+
+\begin{itemize}
+\item \textbf{r-mode}
+
+\item \textbf{c++-mode}
+
+\item \textbf{python-mode}
+
+\item \textbf{makefile-mode}
+
+\item \textbf{text-mode}
+
+\item \textbf{markdown-mode}
+
+\item \textbf{pandoc-mode}
+
+\item \ldots{}
+\end{itemize}
+
+\item \texttt{M-x <major-mode>} : change the major mode
+\end{itemize}
+
+\subsubsection{Minor Modes}
+\label{sec:org451b2e6}
+
+\begin{itemize}
+\item A buffer can have several \textbf{minor modes}
+
+\begin{itemize}
+\item Auto correction
+
+\item Tab Completion
+
+\item Matching parenthesis
+
+\item Macros
+
+\item \ldots{}
+\end{itemize}
+\end{itemize}
+
+\section{Multiple Cursors}
+\label{sec:orgfdcc94d}
+
+\begin{itemize}
+\item \url{https://github.com/magnars/multiple-cursors.el}
+\end{itemize}
+
+\textbf{Example}
+
+\begin{verbatim}
+X 1.000 0.054 
+Y 0.054 1.000 
+Z 1.000 0.775 
+\end{verbatim}
+
+\section{Dired Mode}
+\label{sec:orgba52f91}
+
+Dired is a file browsing system within Emacs
+
+\begin{itemize}
+\item \texttt{C-x d}            : Open dired mode
+
+\item \texttt{S-\textasciicircum{}}              : Up-directory
+
+\item \texttt{a}                : Enter directory
+
+\item \texttt{q}                : quit
+
+\item \texttt{m}                : mark file
+
+\item \texttt{u}                : unmark file
+
+\item \texttt{d}                : mark for deletion
+
+\item \texttt{x}                : delete files marked for deletion
+
+\item \texttt{S-!}              : apply a function to file
+
+\item \texttt{C-x C-q}          : enter editing mode
+
+\item \texttt{C-c C-c}          : leave editing mode
+
+\item \texttt{M-S-! nautilus .} : open nautilus here:
+\end{itemize}
+
+\section{Bookmarks}
+\label{sec:org8f87111}
+
+\begin{itemize}
+\item \texttt{C-x r m} : Create new bookmark (can be a file or a folder)
+
+\item \texttt{C-x r b} : Go to bookmark
+
+\item \texttt{C-x r l} : List of all bookmarks
+\end{itemize}
+
+\section{The init.el File}
+\label{sec:orgde01e1c}
+
+\begin{itemize}
+\item When Emacs starts, it initialize your configuration file \textbf{.init}
+
+\begin{itemize}
+\item located in the \textbf{.emacs} folder.
+
+\item in a fresh install it contains nothing!
+\end{itemize}
+\end{itemize}
+
+\subsection{Melpa}
+\label{sec:org3f9a840}
+
+\begin{itemize}
+\item A package repository for Emacs
+
+\begin{itemize}
+\item \url{https://melpa.org/\#/getting-started}
+\end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+(require 'package)
+(add-to-list 'package-archives
+'("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+\end{verbatim}
+
+\begin{itemize}
+\item \texttt{M-x package-install <package>}
+
+\item \texttt{M-x list-packages}
+
+\item Consider the \texttt{paradox} package
+
+\begin{itemize}
+\item A lot easier to navigate with
+
+\item \texttt{M-x paradox-list-packages}
+\end{itemize}
+\end{itemize}
+
+\section{YASsnippets}
+\label{sec:orgb129547}
+
+\begin{itemize}
+\item A for template system for Emacs
+
+\item \texttt{yasnippet-snippets} : Collection of snippets that supports e.g.
+\begin{itemize}
+\item \texttt{c-mode}
+\item \texttt{c++-mode}
+\item \texttt{python-mode}
+\item \texttt{lisp-mode}
+\item \texttt{latex-mode}
+\item \texttt{bibtex-mode}
+\item \texttt{org-mode}
+\item \texttt{markdown-mode}
+\end{itemize}
+
+\item \texttt{yas-describe-tables} : Snippets and keys for current mode
+
+\item No official snippets for \texttt{r-mode}
+\begin{itemize}
+\item But easy to create
+\end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+# -*- mode: snippet -*-
+# name: lapply
+# key: lap
+# group: *apply family
+# --
+lapply($1, function(x) $0)
+\end{verbatim}
+
+\section{AucTex}
+\label{sec:org5cdf965}
+
+\begin{itemize}
+\item A major mode for using Latex within Emacs
+
+\item Some useful keybindings
+
+\begin{itemize}
+\item \texttt{C-c C-c}    : compile, bibtex, view document
+\item \texttt{C-c C-e}    : Start an environment (itemize, equation, tabular, etc.)
+\item \texttt{C-c RETURN} : Start macro
+\item \texttt{C-c (}      : Insert label
+\item \texttt{C-c )}      : \ref
+\item \texttt{C-c [}      : \cite, \citep, etc.
+\item \texttt{S-=}        : Contents
+\end{itemize}
+
+\href{ftp://ftp.gnu.org/gnu/auctex/11.82-extra/tex-ref.pdf}{AucTeX cheatsheet}
+
+\item \textbf{\LaTeX{}-math-mode} - support for math formatting
+
+\begin{itemize}
+\item \texttt{C-c \textasciitilde{}}  : Toggle
+\item \texttt{`}      : Prefix key
+\end{itemize}
+
+\item YASsnippets within AucTeX!
+
+\item Minimal setup in init file:
+\end{itemize}
+
+\begin{verbatim}
+;; Remove sub and superscript sepcial fonting
+(setq font-latex-fontify-script nil)
+;; Turn on RefTeX in AUCTeX
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+;; Activate nice interface between RefTeX and AUCTeX
+(setq reftex-plug-into-auctex t)
+\end{verbatim}
+
+\section{Emacs Speaks Statistics}
+\label{sec:orgb236aca}
+
+\begin{itemize}
+\item \href{https://ess.r-project.org/}{ESS}
+
+\item Support for various statistical analysis languages
+
+\begin{itemize}
+\item \textbf{R}
+
+\item \textbf{Julia}
+
+\item \textbf{SAS}
+
+\item \textbf{Stata}
+
+\item \textbf{JAGS}
+\end{itemize}
+
+\item inferior ESS (iESS) mode is the REPL (interactive shell) we use
+\end{itemize}
+
+\subsection{R}
+\label{sec:org64c2f1e}
+
+\begin{itemize}
+\item In init.el put \texttt{(reqiure 'ess-rutils)}
+
+\item Some useful commands
+\begin{itemize}
+\item \texttt{C-ENTER}     : send line or region to iESS
+\item \texttt{C-c C-UP}    : eval buffer till point
+\item \texttt{C-c C-DOWN}  : eval buffer from point
+\item \texttt{C-c C-f}     : eval function
+\item \texttt{C-c C-s}     : switch process
+\item \texttt{C-x C-v}     : documentation for object at point
+\item \texttt{C-M-a}       : go to beginning of function
+\item \texttt{C-M-e}       : go to end of function
+\item \texttt{C-UP}        : previous command in REPL
+\item \texttt{C-c C-c}     : break process in REPL
+\end{itemize}
+
+\item The family of \texttt{ess-rutils} (\texttt{C-c C. <char>}) 
+\begin{itemize}
+\item \texttt{o} : rdired
+\item \texttt{d} : change the current working directory
+\item \texttt{r} : list all available pkgs (and intsall some if you want)
+\item \texttt{l} : list all local (installed) pkgs
+\end{itemize}
+
+\item ESS drop-down menu
+\end{itemize}
+
+\href{http://ess.r-project.org/refcard.pdf}{Cheatsheet}
+
+\subsubsection{Debugging}
+\label{sec:org81c9a55}
+
+\begin{itemize}
+\item \texttt{C-c C-t <char>} : The family of \texttt{ess-dev-map}
+
+\begin{itemize}
+\item \texttt{b} : Set breakpoint
+
+\item \texttt{k} : Kill breakpoint
+
+\item \texttt{n} : Next breakpoint
+
+\item \texttt{p} : Previous breakpoint
+\end{itemize}
+
+\item Debugging in \texttt{ess-debug-mode-map}
+
+\begin{itemize}
+\item \texttt{M-C} : Continue
+
+\item \texttt{M-N} : Nex line
+
+\item \texttt{M-Q} : Quit
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Package mode}
+\label{sec:org0888adf}
+
+\begin{itemize}
+\item Integrates nicely with \texttt{devtools} and \texttt{roxygen2}
+
+\item \texttt{M-x ess-r-devtools-<what>}
+
+\begin{itemize}
+\item \texttt{create-package}
+
+\item \texttt{load-package}
+
+\item \texttt{check-package}
+
+\item \texttt{test-package}
+
+\item \texttt{document-package}
+
+\item \texttt{install}
+\end{itemize}
+\end{itemize}
+
+\subsubsection{Controlling buffer display}
+\label{sec:org3fe484d}
+
+\begin{itemize}
+\item Default is
+\end{itemize}
+
+\begin{verbatim}
+----------------------------
+|            |             |
+|            |             |
+|            |             |
+|   Source   |   Console   |
+|            |             |
+|            |             |
+|            |             |
+----------------------------
+\end{verbatim}
+
+\begin{itemize}
+\item ESS manual section 3.5 - Controlling buffer display
+\end{itemize}
+
+\begin{verbatim}
+----------------------------
+|            |             |
+|   Source   |             |
+|            |             |
+|------------| Environment |
+|            |             |
+|   Console  |             |
+|            |             |
+----------------------------
+\end{verbatim}
+
+\begin{itemize}
+\item \texttt{ess-r-dired} : Bring up the environment buffer
+\end{itemize}
+
+\subsubsection{Tags}
+\label{sec:org8a286f0}
+
+\begin{itemize}
+\item \texttt{C-c C-e C-t} : create tags for directory (inside an \texttt{.R} file)
+
+\item \texttt{M-.}         : navigate to tag (a function)
+
+\item \texttt{M-,}         : return
+
+\item In package mode
+
+\begin{itemize}
+\item \texttt{ess-r-devtools-load-package} : all tags available
+\end{itemize}
+\end{itemize}
+
+\section{Polymode}
+\label{sec:org082716b}
+
+\begin{itemize}
+\item Several major modes in one buffer
+
+\item \url{https://polymode.github.io/}
+
+\item \url{https://github.com/polymode/poly-R}
+\end{itemize}
+
+
+\subsection{Rmarkdown}
+\label{sec:org5083c68}
+
+\begin{itemize}
+\item \texttt{poly-markdown+R-mode}
+
+\item Templates
+
+\begin{itemize}
+\item \texttt{M-x \textasciitilde{}poly-r-rmarkdown-create-from-template}
+
+\item Or in \texttt{.Rmd} files
+
+\begin{enumerate}
+\item Templates from the RMarkdown dropdown menu
+
+\item \texttt{M-n M-m}
+\end{enumerate}
+\end{itemize}
+\end{itemize}
+
+\section{Magit}
+\label{sec:org0eb13b6}
+
+\begin{itemize}
+\item A major mode for \textbf{git} version control
+
+\item \href{https://www.masteringemacs.org/article/introduction-magit-emacs-mode-git}{Vanilla tutorial}
+
+\item \href{https://www.youtube.com/watch?v=vQO7F2Q9DwA\&feature=youtu.be}{Video tutorial}
+
+\item \href{https://magit.vc/screenshots/}{Screenshots tutorial}
+
+\item Init setup:
+\end{itemize}
+
+\begin{verbatim}
+(global-set-key (kbd "C-x g") 'magit-status)
+\end{verbatim}
+\end{document}
